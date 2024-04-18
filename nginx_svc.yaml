@@ -1,0 +1,16 @@
+apiVersion: v1       # <<<<<<  v1 是 Service 的 apiVersion
+kind: Service        # <<<<<<  指明当前资源的类型为 Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx       # <<<<<<  Service 的名字为 nginx
+spec:
+  ports:
+    - port: 80        # <<<<<<  将 Service 的 80 端口映射到 Pod 的 80 端口，使用 TCP 协议
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: nginx     # <<<<<<  selector 指明挑选那些 label 为 run: nginx 的 Pod 作为 Service 的后端
+status:
+  loadBalancer: {}

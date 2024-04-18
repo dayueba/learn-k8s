@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+        livenessProbe:
+          exec:
+            command:
+              - cat
+              - /tmp/healthy
+          initialDelaySeconds: 10   # 容器启动 10 秒之后开始检测
+          periodSeconds: 5
+      restartPolicy: Always # 重启策略 默认：Always
+status: {}

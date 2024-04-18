@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-a-deployment # deployment 的名字，这个名字需要是唯一的
+spec:
+  replicas: 3
+  strategy:
+      type: RollingUpdate # 滚动更新
+  selector: # 表示的是 deployment 资源和 pod 资源关联的方式
+    matchLabels:
+      app: service-a # pod名为 service-a
+  template: # 用来定义 pod 资源
+    metadata:
+      labels: # 和上面的 selector.matchLabels 对应起来。来表明 pod 是被 deployment 管理，不用在template 里面加上 metadata.name 是因为 deployment 会主动为我们创建 pod 的唯一name。
+        app: service-a
+    spec:
+      containers:
+        - image: service_a:v0.3
+          name: service-a
+          imagePullPolicy: Never # 不从仓库拉取镜像
+          ports:
+            - containerPort: 7002
+
+# kubectl apply -f service_a_deployment.yaml
+# kubectl get pods
+# kubectl get deployment
+# https://kubernetes.io/zh-cn/docs/reference/kubectl/quick-reference/#updating-resources

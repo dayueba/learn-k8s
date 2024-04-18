@@ -1,0 +1,17 @@
+# nginx.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod # pod的名字，需要唯一
+spec:
+  containers:
+    - name: nginx-container # 容器的名称
+      image: nginx # 容器的镜像
+
+# kubectl apply -f nginx.yaml
+# kubectl get pods
+# kubectl port-forward nginx-pod 4000:80
+# curl http://localhost:4000
+# kubectl exec -it nginx-pod /bin/bash
+# 如果一个pod里有多个容器，默认进入第一个容器
+# https://kubernetes.io/zh-cn/docs/reference/kubectl/quick-reference/

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service-a # pod的名字，需要唯一
+  labels:
+    app: service-a
+spec:
+  containers:
+    - name: service-a # 容器的名称
+      image: service_a:v0.3 # 容器的镜像
+      imagePullPolicy: Never # 不从仓库拉取镜像
+
+# eval $(minikube docker-env)
+# minikube image build -t service_a:v0.3 .
+# kubectl apply -f service_a.yaml
+# kubectl port-forward service-a 7002:7002

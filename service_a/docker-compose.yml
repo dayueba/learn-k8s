@@ -1,0 +1,13 @@
+version: '3'
+services:
+  test_service:
+    image: test_service:v0.1
+    scale: 3
+    labels:
+      - "traefik.http.routers.test_service.rule=Host(`test_service.docker.localhost`)"
+      - "traefik.http.middlewares.test_retry.retry.attempts=4"
+      - "traefik.http.middlewares.test_retry.retry.initialinterval=100ms"
+      - "traefik.http.middlewares.test-inflightreq.inflightreq.amount=1"
+      - "traefik.http.routers.test_service.middlewares=test_retry@docker, test-inflightreq@docker"
+#    ports:
+#      - '7002:7002'

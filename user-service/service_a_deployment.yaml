@@ -15,7 +15,7 @@ spec:
         app: service-a
     spec:
       containers:
-        - image: service_a:v0.3
+        - image: user-service:v0.3
           name: service-a
           imagePullPolicy: Never # 不从仓库拉取镜像
           ports:

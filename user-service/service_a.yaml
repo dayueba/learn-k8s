@@ -7,10 +7,10 @@ metadata:
 spec:
   containers:
     - name: service-a # 容器的名称
-      image: service_a:v0.3 # 容器的镜像
+      image: user-service:v0.3 # 容器的镜像
       imagePullPolicy: Never # 不从仓库拉取镜像
 
 # eval $(minikube docker-env)
-# minikube image build -t service_a:v0.3 .
-# kubectl apply -f service_a.yaml
+# minikube image build -t user-service:v0.3 .
+# kubectl apply -f user-service.yaml
 # kubectl port-forward service-a 7002:7002
